@@ -32,8 +32,8 @@ jobs:
       - name: Build and push Lucky Number Generator
         uses: docker/build-push-action@v2
         with:
-          context: LuckyNumberGenerator
-          file: ./Dockerfile
+          context: .
+          file: ./LuckyNumberGenerator/Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:latest
       
