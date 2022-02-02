@@ -33,7 +33,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./LuckyNumberGenerator
-          file: ./Dockerfile
+          file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:latest
       
@@ -41,7 +41,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./WebApi
-          file: ./Dockerfile
+          file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-webapi:latest
       
@@ -49,6 +49,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: ./Angular
-          file: ./Dockerfile
+          file: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-angular:latest
