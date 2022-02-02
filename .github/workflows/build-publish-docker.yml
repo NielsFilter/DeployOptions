@@ -32,23 +32,23 @@ jobs:
       - name: Build and push Lucky Number Generator
         uses: docker/build-push-action@v2
         with:
-          context: ./LuckyNumberGenerator
-          file: Dockerfile
+          context: LuckyNumberGenerator
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:latest
       
       - name: Build and push Web API
         uses: docker/build-push-action@v2
         with:
-          context: ./WebApi
-          file: Dockerfile
+          context: WebApi
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-webapi:latest
       
       - name: Build and push Angular
         uses: docker/build-push-action@v2
         with:
-          context: ./Angular
-          file: Dockerfile
+          context: Angular
+          file: ./Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-angular:latest
