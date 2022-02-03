@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace LuckyNumberApi.Controllers
+namespace LuckyNumberGenerator.Controllers
 {
     [ApiController]
     [Route("[controller]")]

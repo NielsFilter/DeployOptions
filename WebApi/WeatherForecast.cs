@@ -1,4 +1,4 @@
-namespace DeployOptions
+namespace WebApi
 {
     public class WeatherForecast
     {
