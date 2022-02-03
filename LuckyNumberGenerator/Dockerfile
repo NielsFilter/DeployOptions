@@ -1,20 +1,21 @@
-﻿FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS base
-WORKDIR /app
-EXPOSE 80
-EXPOSE 443
+﻿FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 
-FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
+# copy csproj into container and execute dotnet restore
 WORKDIR /src
-COPY ["LuckyNumberApi/LuckyNumberApi.csproj", "LuckyNumberApi/"]
-RUN dotnet restore "LuckyNumberApi/LuckyNumberApi.csproj"
-COPY . .
-WORKDIR "/src/LuckyNumberApi"
-RUN dotnet build "LuckyNumberApi.csproj" -c Release -o /app/build
+COPY LuckyNumberGenerator.csproj ./LuckyNumberGenerator/
+WORKDIR /src/LuckyNumberGenerator
+RUN dotnet restore
 
-FROM build AS publish
-RUN dotnet publish "LuckyNumberApi.csproj" -c Release -o /app/publish
+# copy all other files and then publish the app
+WORKDIR /src
+COPY . ./LuckyNumberGenerator/
+WORKDIR /src/LuckyNumberGenerator
+RUN dotnet publish -c release -o /app --no-restore
 
-FROM base AS final
+# we've published, let's finally set th entrypoint
+FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "LuckyNumberApi.dll"]
+#EXPOSE 80
+EXPOSE 443
+COPY --from=build /app ./
+ENTRYPOINT ["dotnet", "LuckyNumberGenerator.dll"]

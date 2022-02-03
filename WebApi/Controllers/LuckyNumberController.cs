@@ -1,35 +1,27 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 
-namespace DeployOptions.Controllers
+namespace WebApi.Controllers
 {
     [ApiController]
     [Route("[controller]")]
-    public class WeatherForecastController : ControllerBase
+    public class LuckyNumberController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
+        private readonly LuckyNumberGeneratorService _luckyNumberGeneratorService;
+        private readonly ILogger<LuckyNumberController> _logger;
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public LuckyNumberController(
+            LuckyNumberGeneratorService luckyNumberGeneratorService,
+            ILogger<LuckyNumberController> logger)
         {
+            _luckyNumberGeneratorService = luckyNumberGeneratorService;
             _logger = logger;
         }
-
+        
         [HttpGet]
-        public IEnumerable<WeatherForecast> Get()
+        public async Task<int> GetLuckyNumber()
         {
-            return Enumerable.Range(1, 5)
-                .Select(
-                    index => new WeatherForecast
-                    {
-                        Date = DateTime.Now.AddDays(index),
-                        TemperatureC = Random.Shared.Next(-20, 55),
-                        Summary = Summaries[Random.Shared.Next(Summaries.Length)]
-                    })
-                .ToArray();
+            _logger.LogInformation("Fetching lucky number from lucky number service");
+            return await _luckyNumberGeneratorService.FetchLuckyNumberOfTheDay();
         }
     }
 }
