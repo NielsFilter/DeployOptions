@@ -15,7 +15,6 @@ RUN dotnet publish -c release -o /app --no-restore
 # we've published, let's finally set th entrypoint
 FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
-#EXPOSE 80
 EXPOSE 443
 COPY --from=build /app ./
 ENTRYPOINT ["dotnet", "WebApi.dll"]
