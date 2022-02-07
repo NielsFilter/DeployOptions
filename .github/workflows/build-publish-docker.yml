@@ -71,5 +71,5 @@ jobs:
              echo "Installing containerapp extension"
              az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
              echo "Starting Deploying"
-             az containerapp update -n deploy-options-luckynum -g ContainerAppDeployment -i docker.io/deploy-options-luckynum:${{ github.sha }} --debug
+             az containerapp update -n deploy-options-luckynum -g ContainerAppDeployment -i docker.io/filterniels/deploy-options-luckynum:${{ github.sha }} --debug
 
