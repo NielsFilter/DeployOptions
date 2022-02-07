@@ -29,7 +29,7 @@ app.UseHsts();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors(x=>x.AllowAnyOrigin());
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 
