@@ -43,7 +43,7 @@ jobs:
           context: LuckyNumberGenerator
           file: LuckyNumberGenerator/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:${{ github.sha }}
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:latest #${{ github.sha }}
       
 #       - name: Build and push Web API
 #         uses: docker/build-push-action@v2
@@ -71,5 +71,5 @@ jobs:
              echo "Installing containerapp extension"
              az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
              echo "Starting Deploying"
-             az containerapp update -n deploy-options-luckynum -g ContainerAppDeployment -i docker.io/filterniels/deploy-options-luckynum:${{ github.sha }} --debug
+             az containerapp update -n deploy-options-luckynum -g ContainerAppDeployment -i docker.io/filterniels/deploy-options-luckynum:latest --debug
 
