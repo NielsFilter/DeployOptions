@@ -100,6 +100,12 @@ resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
         minReplicas: 0
         maxReplicas: 2
       }
+      env: [
+        {
+          name: 'LuckyNumberService:ApiUrl'
+          value: 'http://${luckynum_app.properties.configuration.ingress.fqdn}/' 
+        }
+      ]
     }
   }
 }
