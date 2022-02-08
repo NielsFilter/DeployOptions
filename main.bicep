@@ -73,42 +73,42 @@ resource luckynum_app 'Microsoft.Web/containerapps@2021-03-01' = {
   }
 }
 
-resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
-  name: webapi_name
-  kind: 'containerapps'
-  location: 'northeurope'
-  properties: {
-    kubeEnvironmentId: app_environment.id
-    configuration: {
-      ingress: {
-        'external': true
-        'targetPort': webapi_port
-      }
-    }
-    template: {
-      containers: [
-        {
-          image: webapi_image
-          name: webapi_name
-          resources: {
-            cpu: '0.5'
-            memory: '1Gi'
-          }
-        }
-      ]
-      scale: {
-        minReplicas: 0
-        maxReplicas: 5
-      }
-      env: [
-        {
-          name: 'LuckyNumberService:ApiUrl'
-          value: 'http://${luckynum_app.properties.configuration.ingress.fqdn}/' 
-        }
-      ]
-    }
-  }
-}
+// resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
+//   name: webapi_name
+//   kind: 'containerapps'
+//   location: 'northeurope'
+//   properties: {
+//     kubeEnvironmentId: app_environment.id
+//     configuration: {
+//       ingress: {
+//         'external': true
+//         'targetPort': webapi_port
+//       }
+//     }
+//     template: {
+//       containers: [
+//         {
+//           image: webapi_image
+//           name: webapi_name
+//           resources: {
+//             cpu: '0.5'
+//             memory: '1Gi'
+//           }
+//         }
+//       ]
+//       scale: {
+//         minReplicas: 0
+//         maxReplicas: 5
+//       }
+//       env: [
+//         {
+//           name: 'LuckyNumberService:ApiUrl'
+//           value: 'http://${luckynum_app.properties.configuration.ingress.fqdn}/' 
+//         }
+//       ]
+//     }
+//   }
+// }
 
 resource angular_app 'Microsoft.Web/containerapps@2021-03-01' = {
   name: angular_name
