@@ -7,6 +7,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Deployment", "Deployment", "{63201F37-6F04-4FFB-83BB-56D2F70CE92E}"
 	ProjectSection(SolutionItems) = preProject
 		docker-compose.yml = docker-compose.yml
+		template.bicep = template.bicep
 	EndProjectSection
 EndProject
 Global
