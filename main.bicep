@@ -137,6 +137,12 @@ resource angular_app 'Microsoft.Web/containerapps@2021-03-01' = {
         minReplicas: 0
         maxReplicas: 2
       }
+      env: [
+        {
+          name: 'API_URL'
+          value: 'http://${webapi_app.properties.configuration.ingress.fqdn}/' 
+        }
+      ]
     }
   }
 }
