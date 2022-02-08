@@ -82,7 +82,7 @@ resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
     configuration: {
       ingress: {
         'external': true
-        'targetPort': 123
+        'targetPort': webapi_port
       }
     }
     template: {
