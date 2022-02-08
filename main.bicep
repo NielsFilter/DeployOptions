@@ -98,7 +98,7 @@ resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
       ]
       scale: {
         minReplicas: 0
-        maxReplicas: 2
+        maxReplicas: 5
       }
       env: [
         {
