@@ -31,7 +31,7 @@ jobs:
           resourceGroupName: ContainerAppDeployment
           template: ./main.bicep
           deploymentMode: Incremental
-          
+          failOnStdErr: false #sucks to have to do this, but in container app incorrectly fails validation (due to warning), causing the workflow to bomb out
           
   deploy-luckynum:
     runs-on: ubuntu-latest
