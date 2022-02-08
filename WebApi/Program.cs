@@ -25,11 +25,9 @@ builder.Services.AddSwaggerGen();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
-app.UseHsts();
 app.UseSwagger();
 app.UseSwaggerUI();
 app.UseCors(x=>x.AllowAnyOrigin());
-//app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseRouting();
 

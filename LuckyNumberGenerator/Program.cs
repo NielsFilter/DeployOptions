@@ -12,9 +12,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 app.UseSwagger();
 app.UseSwaggerUI();
-app.UseHsts();
 app.UseCors(x=>x.AllowAnyOrigin());
-//app.UseHttpsRedirection();
 app.UseAuthorization();
 app.MapControllers();
 

@@ -3,28 +3,22 @@ services:
   luckynumber:
     build: ./LuckyNumberGenerator
     ports:
-      - '44321:443'
-    env_file:
-      - docker-compose.env
-    volumes:
-      - C:/Users/niels.filter/.aspnet/https:/https/
+      - '5000:80'
+
   webapi:
     build: ./WebApi
     ports:
-      - '44333:443'
-    env_file:
-      - docker-compose.env
+      - '5001:80'
     environment:
-      - LuckyNumberService:ApiUrl=https://luckynumber:443/
-    volumes:
-      - C:/Users/niels.filter/.aspnet/https:/https/
+      - LuckyNumberService:ApiUrl=http://luckynumber:80/
     depends_on:
       - luckynumber
+
   frontend:
     build: ./Angular
     ports:
-      - '80:80'
+      - '4200:80'
     environment:
-      - API_URL=https://localhost:44333/
+      - API_URL=http://localhost:5001/
     depends_on:
       - webapi
