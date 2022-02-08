@@ -23,11 +23,6 @@ jobs:
         uses: azure/login@v1
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-      - name: Apply infrastructure with bicep
-        uses: Azure/bicep-build-action@v1.0.0
-        with:
-          bicepFilePath: ./main.bicep      
       
       - name: Deploy infrastructure with bicep
         uses: Azure/arm-deploy@v1
