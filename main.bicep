@@ -103,7 +103,7 @@ resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
       env: [
         {
           name: 'LuckyNumberService:ApiUrl'
-          value: 'http://${luckynum_app.properties.configuration.ingress.fqdn}/' 
+          value: 'https://${luckynum_app.properties.configuration.ingress.fqdn}/' 
         }
       ]
     }
@@ -140,7 +140,7 @@ resource angular_app 'Microsoft.Web/containerapps@2021-03-01' = {
       env: [
         {
           name: 'API_URL'
-          value: 'http://${webapi_app.properties.configuration.ingress.fqdn}/' 
+          value: 'https://${webapi_app.properties.configuration.ingress.fqdn}/' 
         }
       ]
     }
