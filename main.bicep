@@ -42,107 +42,107 @@ resource app_environment 'Microsoft.Web/kubeenvironments@2021-02-01' = {
   }
 }
 
-resource luckynum_app 'Microsoft.Web/containerapps@2021-03-01' = {
-  name: luckynum_name
-  kind: 'containerapps'
-  location: 'northeurope'
-  properties: {
-    kubeEnvironmentId: app_environment.id
-    configuration: {
-      ingress: {
-        'external': false
-        'targetPort': luckynum_port
-      }
-    }
-    template: {
-      containers: [
-        {
-          image: luckynum_image
-          name: luckynum_name
-          resources: {
-            cpu: '0.5'
-            memory: '1Gi'
-          }
-        }
-      ]
-      scale: {
-        minReplicas: 0
-        maxReplicas: 2
-      }
-    }
-  }
-}
+// resource luckynum_app 'Microsoft.Web/containerapps@2021-03-01' = {
+//   name: luckynum_name
+//   kind: 'containerapps'
+//   location: 'northeurope'
+//   properties: {
+//     kubeEnvironmentId: app_environment.id
+//     configuration: {
+//       ingress: {
+//         'external': false
+//         'targetPort': luckynum_port
+//       }
+//     }
+//     template: {
+//       containers: [
+//         {
+//           image: luckynum_image
+//           name: luckynum_name
+//           resources: {
+//             cpu: '0.5'
+//             memory: '1Gi'
+//           }
+//         }
+//       ]
+//       scale: {
+//         minReplicas: 0
+//         maxReplicas: 2
+//       }
+//     }
+//   }
+// }
 
-resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
-  name: webapi_name
-  kind: 'containerapps'
-  location: 'northeurope'
-  properties: {
-    kubeEnvironmentId: app_environment.id
-    configuration: {
-      ingress: {
-        'external': true
-        'targetPort': webapi_port
-      }
-    }
-    template: {
-      containers: [
-        {
-          image: webapi_image
-          name: webapi_name
-          resources: {
-            cpu: '0.5'
-            memory: '1Gi'
-          }
-        }
-      ]
-      scale: {
-        minReplicas: 0
-        maxReplicas: 2
-      }
-      env: [
-        {
-          name: 'LuckyNumberService:ApiUrl'
-          value: 'https://${luckynum_app.properties.configuration.ingress.fqdn}/' 
-        }
-      ]
-    }
-  }
-}
+// resource webapi_app 'Microsoft.Web/containerapps@2021-03-01' = {
+//   name: webapi_name
+//   kind: 'containerapps'
+//   location: 'northeurope'
+//   properties: {
+//     kubeEnvironmentId: app_environment.id
+//     configuration: {
+//       ingress: {
+//         'external': true
+//         'targetPort': webapi_port
+//       }
+//     }
+//     template: {
+//       containers: [
+//         {
+//           image: webapi_image
+//           name: webapi_name
+//           resources: {
+//             cpu: '0.5'
+//             memory: '1Gi'
+//           }
+//         }
+//       ]
+//       scale: {
+//         minReplicas: 0
+//         maxReplicas: 2
+//       }
+//       env: [
+//         {
+//           name: 'LuckyNumberService:ApiUrl'
+//           value: 'https://${luckynum_app.properties.configuration.ingress.fqdn}/' 
+//         }
+//       ]
+//     }
+//   }
+// }
 
-resource angular_app 'Microsoft.Web/containerapps@2021-03-01' = {
-  name: angular_name
-  kind: 'containerapps'
-  location: 'northeurope'
-  properties: {
-    kubeEnvironmentId: app_environment.id
-    configuration: {
-      ingress: {
-        'external': true
-        'targetPort': angular_port
-      }
-    }
-    template: {
-      containers: [
-        {
-          image: angular_image
-          name: angular_name
-          resources: {
-            cpu: '0.5'
-            memory: '1Gi'
-          }
-        }
-      ]
-      scale: {
-        minReplicas: 0
-        maxReplicas: 2
-      }
-      env: [
-        {
-          name: 'API_URL'
-          value: 'https://${webapi_app.properties.configuration.ingress.fqdn}/' 
-        }
-      ]
-    }
-  }
-}
+// resource angular_app 'Microsoft.Web/containerapps@2021-03-01' = {
+//   name: angular_name
+//   kind: 'containerapps'
+//   location: 'northeurope'
+//   properties: {
+//     kubeEnvironmentId: app_environment.id
+//     configuration: {
+//       ingress: {
+//         'external': true
+//         'targetPort': angular_port
+//       }
+//     }
+//     template: {
+//       containers: [
+//         {
+//           image: angular_image
+//           name: angular_name
+//           resources: {
+//             cpu: '0.5'
+//             memory: '1Gi'
+//           }
+//         }
+//       ]
+//       scale: {
+//         minReplicas: 0
+//         maxReplicas: 2
+//       }
+//       env: [
+//         {
+//           name: 'API_URL'
+//           value: 'https://${webapi_app.properties.configuration.ingress.fqdn}/' 
+//         }
+//       ]
+//     }
+//   }
+// }

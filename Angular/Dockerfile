@@ -32,15 +32,3 @@ EXPOSE 80
 RUN echo 'before envsubst'
 CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/env.template.js > /usr/share/nginx/html/env.js && exec nginx -g 'daemon off;'"]
 RUN echo 'after envsubst'
-#WORKDIR /
-
-
-
-# # When the container starts, replace the env.js with values from environment variables
-# CMD ["/bin/sh",  "-c",  "envsubst < /app/static/angular/assets/env.template.js > /app/static/angular/assets/env.js && exec nginx -g 'daemon off;'"]
-
-# RUN echo "mainFileName=\"\$(ls /usr/share/nginx/html/main*.js)\" && \ 
-#           envsubst < \${mainFileName} > main.tmp && \ 
-#           mv main.tmp \${mainFileName} && nginx -g 'daemon off;'" > run.sh
-
-# ENTRYPOINT ["sh", "run.sh"]
