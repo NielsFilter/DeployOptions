@@ -21,7 +21,7 @@ namespace WebApi.Controllers
         [HttpGet]
         public IEnumerable<WeatherForecast> Get()
         {
-            return Enumerable.Range(1, 5)
+            return Enumerable.Range(1, 10)
                 .Select(
                     index => new WeatherForecast
                     {

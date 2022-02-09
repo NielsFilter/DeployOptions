@@ -16,7 +16,7 @@ namespace LuckyNumberGenerator.Controllers
         [HttpGet("number", Name = "GenerateNumber")]
         public int Get()
         {
-            var number = new Random().Next(100, 10000);
+            var number = new Random().Next(0, 100);
             _logger.LogInformation("Generated number {0}", number);
             return number;
         }
