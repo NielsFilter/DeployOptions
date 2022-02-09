@@ -109,7 +109,7 @@ jobs:
             echo "Installing containerapp extension"
             az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
             echo "Starting Deploying"
-            az containerapp update -g ContainerAppDeployment -n deploy-options-webapi -i docker.io/filterniels/deploy-options-webapi:latest --yaml /WebApi/container-app.yml
+            az containerapp update -g ContainerAppDeployment -n deploy-options-webapi -i docker.io/filterniels/deploy-options-webapi:latest --yaml ./WebApi/container-app.yml
 
   deploy-angular:
     runs-on: ubuntu-latest
@@ -148,4 +148,4 @@ jobs:
             echo "Installing containerapp extension"
             az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
             echo "Starting Deploying"
-            az containerapp update -g ContainerAppDeployment -n deploy-options-angular -i docker.io/filterniels/deploy-options-angular:latest --yaml Angular/container-app.yml
+            az containerapp update -g ContainerAppDeployment -n deploy-options-angular -i docker.io/filterniels/deploy-options-angular:latest --yaml ./Angular/container-app.yml
