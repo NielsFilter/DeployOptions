@@ -23,7 +23,7 @@ properties:
         - image: docker.io/filterniels/deploy-options-webapi:latest
           name: deploy-options-webapi
           env:
-          - name: LuckyNumberService:ApiUrl
+          - name: LuckyNumberService__ApiUrl
             value: https://deploy-options-luckynum.internal.calmwave-828f0207.northeurope.azurecontainerapps.io/
           resources:
               cpu: 0.5
