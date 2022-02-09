@@ -18,7 +18,7 @@ properties:
               weight: 100
             transport: Auto
     template:
-        revisionSuffix: myrevision
+        #revisionSuffix: myrevision
         containers:
         - image: docker.io/filterniels/deploy-options-angular:latest
           name: deploy-options-angular
