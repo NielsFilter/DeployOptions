@@ -1,19 +1,6 @@
 param app_environment_name string = 'deploy-app-environment'
 param log_analytics_workspace_name string = 'deploy-workspace'
 
-// param luckynum_port int = 80
-// param luckynum_name string = 'deploy-options-luckynum'
-
-// param webapi_name string = 'deploy-options-webapi'
-// param webapi_port int = 80
-
-// param angular_name string = 'deploy-options-angular'
-// param angular_port int = 80
-
-// var luckynum_image = 'docker.io/filterniels/${luckynum_name}:latest'
-// var webapi_image = 'docker.io/filterniels/${webapi_name}:latest'
-// var angular_image = 'docker.io/filterniels/${angular_name}:latest'
-
 resource log_analytics_workspace 'Microsoft.OperationalInsights/workspaces@2021-06-01' = {
   name: log_analytics_workspace_name
   location: 'eastus'

@@ -18,7 +18,6 @@ properties:
               weight: 100
             transport: Auto
     template:
-        #revisionSuffix: myrevision
         containers:
         - image: docker.io/filterniels/deploy-options-webapi:latest
           name: deploy-options-webapi
