@@ -26,4 +26,9 @@ properties:
               memory: 1Gi
         scale:
             minReplicas: 0
-            maxReplicas: 2
+            maxReplicas: 25
+            rules":
+            - name: http-rule,
+              http: 
+              metadata:
+                concurrentRequests": 2
