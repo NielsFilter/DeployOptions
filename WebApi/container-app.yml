@@ -17,6 +17,11 @@ properties:
             - latestRevision: true
               weight: 100
             transport: Auto
+        secrets: [
+          {
+            name: my-connection-string-secret,
+            value: my-conn-string-that-should-be-a-parameter
+          }]
     template:
         containers:
         - image: docker.io/filterniels/deploy-options-webapi:latest
@@ -24,6 +29,8 @@ properties:
           env:
           - name: LuckyNumberService__ApiUrl
             value: https://deploy-options-luckynum.internal.calmwave-828f0207.northeurope.azurecontainerapps.io/
+          - name: ConnectionString
+            secretref: my-connection-string-secret
           resources:
               cpu: 0.5
               memory: 1Gi
