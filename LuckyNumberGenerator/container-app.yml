@@ -26,7 +26,7 @@ properties:
               memory: 1Gi
         scale:
             minReplicas: 0
-            maxReplicas: 25
+            maxReplicas: 10
             rules:
             - name: http-rule
               http: 
