@@ -18,7 +18,7 @@ properties:
               weight: 100
             transport: Auto
         secrets:
-          - name: myconnstr,
+          - name: myconnstr
             value: my-conn-string-that-should-be-a-parameter
     template:
         containers:
