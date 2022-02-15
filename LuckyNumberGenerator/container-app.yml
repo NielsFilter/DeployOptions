@@ -30,5 +30,5 @@ properties:
             rules:
             - name: http-rule
               http: 
-              metadata:
-                concurrentRequests: 2
+                metadata:
+                  concurrentRequests: 2
