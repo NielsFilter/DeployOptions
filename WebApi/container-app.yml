@@ -39,4 +39,4 @@ properties:
               - name: http-rule
                 http: 
                     metadata:
-                        concurrentRequests: 32
+                        concurrentRequests: 200
