@@ -29,4 +29,4 @@ properties:
               memory: 1Gi
         scale:
             minReplicas: 0
-            maxReplicas: 2
+            maxReplicas: 10
