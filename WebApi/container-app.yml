@@ -10,28 +10,33 @@ properties:
     configuration:
         activeRevisionsMode: Multiple
         secrets:
-        - name: myconnstr
-          value: conn-string-that-should-be-a-parameter
+          - name: myconnstr
+            value: conn-string-that-should-be-a-parameter
         ingress:
             external: True
             allowInsecure: false
             targetPort: 80
             traffic:
-            - latestRevision: true
-              weight: 100
+              - latestRevision: true
+                weight: 100
             transport: Auto
     template:
         containers:
         - image: docker.io/filterniels/deploy-options-webapi:latest
           name: deploy-options-webapi
           env:
-          - name: LuckyNumberService__ApiUrl
-            value: https://deploy-options-luckynum.internal.calmwave-828f0207.northeurope.azurecontainerapps.io/
-          - name: ConnectionString
-            secretRef: myconnstr
+            - name: LuckyNumberService__ApiUrl
+              value: https://deploy-options-luckynum.internal.calmwave-828f0207.northeurope.azurecontainerapps.io/
+            - name: ConnectionString
+              secretRef: myconnstr
           resources:
               cpu: 0.5
               memory: 1Gi
         scale:
             minReplicas: 0
-            maxReplicas: 2
+            maxReplicas: 10
+            rules:
+              - name: http-rule
+                http: 
+                    metadata:
+                        concurrentRequests: 1
