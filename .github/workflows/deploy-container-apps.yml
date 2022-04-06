@@ -4,7 +4,8 @@ name: Deploy as App Containers
 
 on:
   workflow_run:
-    workflows: ["Deploy Containers"]
+    workflows:
+      - 'Deploy Containers'
     #if: env.DEPLOYMENT_MODE == 'ContainerApps'
     # types:
     #   - completed
