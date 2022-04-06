@@ -3,11 +3,11 @@
 name: build images and deploy to DockerHub
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+  workflow_run:
+    workflows: ["Deploy Containers"]
+    types:
+      - completed
+      
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -38,26 +38,6 @@ jobs:
     needs: infrastructure
 
     steps:
-      - name: Checkout 
-        uses: actions/checkout@v2
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-                  
-      - name: Build and push to DockerHub
-        uses: docker/build-push-action@v2
-        with:
-          context: LuckyNumberGenerator
-          file: LuckyNumberGenerator/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:latest
-                
       - name: Az Login
         uses: azure/login@v1
         with:
@@ -77,26 +57,6 @@ jobs:
     needs: infrastructure
 
     steps:
-      - name: Checkout 
-        uses: actions/checkout@v2
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-      
-      - name: Build and push to DockerHub
-        uses: docker/build-push-action@v2
-        with:
-          context: WebApi
-          file: WebApi/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-webapi:latest
-          
       - name: Az Login
         uses: azure/login@v1
         with:
@@ -116,26 +76,6 @@ jobs:
     needs: infrastructure
 
     steps:
-      - name: Checkout 
-        uses: actions/checkout@v2
-
-      - name: Login to DockerHub
-        uses: docker/login-action@v1
-        with:
-          username: ${{ secrets.DOCKER_HUB_USERNAME }}
-          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
-      
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v1
-                  
-      - name: Build and push to DockerHub
-        uses: docker/build-push-action@v2
-        with:
-          context: Angular
-          file: Angular/Dockerfile
-          push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-angular:latest
-          
       - name: Az Login
         uses: azure/login@v1
         with:
