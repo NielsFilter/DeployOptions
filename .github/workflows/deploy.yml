@@ -1,6 +1,9 @@
 # This is a basic workflow to help you get started with Actions
 
-name: build images and deploy to DockerHub
+name: Deploy Containers
+
+env:
+  DEPLOYMENT_MODE: Aks
 
 on:
   push:
