@@ -5,7 +5,7 @@ name: Deploy as App Kubernetes
 on:
   workflow_run:
     workflows: ["Deploy Containers"]
-    if: env.DEPLOYMENT_MODE == 'Aks'
+    # if: env.DEPLOYMENT_MODE == 'Aks'
     types:
       - completed
 
