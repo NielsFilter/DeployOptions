@@ -33,8 +33,8 @@ jobs:
           echo "::set-output name=aks::${{ env.AKS }}";
           echo "::set-output name=luckynum::true";
           echo "::set-output name=webapi::true";
-          echo "::set-output name=angular::true;
-          echo "AKS: ${{ env.AKS }}";
+          echo "::set-output name=angular::true";
+          echo "env.AKS: ${{ env.AKS }}";
           echo "CONTAINER_APPS: ${{ env.CONTAINER_APPS }}";
 
   ### Infrastructure (bicep) ### - This could be moved out and run only on infra changes
