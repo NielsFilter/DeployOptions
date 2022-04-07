@@ -18,22 +18,27 @@ on:
 
 jobs:
 
-  infrastructure-context:
+  deployment-context:
     runs-on: ubuntu-latest
     outputs:
       containerapps: ${{ steps.a.outputs.containerapps }}
       aks: ${{ steps.b.outputs.aks }}
+      luckynum: ${{ steps.a.outputs.luckynum }}
+      webapi: ${{ steps.b.outputs.webapi }}
+      angular: ${{ steps.b.outputs.angular }}
     steps:
-      - name: Deploy to Container Apps?
-        run: echo "::set-output name=containerapps::true"
-      - name: Deploy to Container Aks?
-        run: echo "::set-output name=aks::false"
+      - run: |
+          echo "::set-output name=containerapps::true"
+          echo "::set-output name=aks::false"
+          echo "::set-output name=luckynum::true"
+          echo "::set-output name=webapi::true"
+          echo "::set-output name=angular::true"
 
   ### Infrastructure (bicep) ### - This could be moved out and run only on infra changes
   infrastructure-aks:
     runs-on: ubuntu-latest
-    needs: infrastructure-context
-    if: needs.infrastructure-context.outputs.aks == 'true'
+    needs: deployment-context
+    if: needs.deployment-context.outputs.aks == 'true'
 
     steps:
       - name: Checkout 
@@ -52,10 +57,22 @@ jobs:
           template: ./aks.bicep
           deploymentMode: Incremental
 
+  infra-test:
+    runs-on: ubuntu-latest
+    needs: deployment-context
+    #if: needs.deployment-context.outputs.containerapps == 'true'
+
+    steps:
+      - run: |
+          echo "containerapps1: ${{ needs.deployment-context.outputs.containerapps }}";
+          echo "containerapps2: ${{ github.needs.deployment-context.outputs.containerapps }}"
+          echo "test: ${{  env.DEPLOYMENT_MODE }}";
+
+
   infrastructure-containerapps:
     runs-on: ubuntu-latest
-    needs: infrastructure-context
-    if: needs.infrastructure-context.outputs.containerapps == 'true'
+    needs: deployment-context
+    if: needs.deployment-context.outputs.containerapps == 'true'
 
     steps:
       - name: Checkout 
@@ -79,6 +96,8 @@ jobs:
   #### Lucky number service ####
   luckynum-docker:
     runs-on: ubuntu-latest
+    needs: deployment-context
+    if: needs.deployment-context.outputs.luckynum == 'true'
 
     steps:
       - name: Checkout 
@@ -108,7 +127,6 @@ jobs:
 
   luckynum-containerapps:
     runs-on: ubuntu-latest
-    # if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, luckynum-docker]
 
     steps:
@@ -128,7 +146,6 @@ jobs:
 
   luckynum-aks:
     runs-on: ubuntu-latest
-    # if: ${{ env.DEPLOYMENT_MODE == 'Aks' }}
     needs: [infrastructure-aks, luckynum-docker]
 
     steps:
@@ -161,6 +178,8 @@ jobs:
   ### Web Api service ###
   webapi-docker:
     runs-on: ubuntu-latest
+    needs: deployment-context
+    if: needs.deployment-context.outputs.webapi == 'true'
 
     steps:
       - name: Checkout 
@@ -190,7 +209,6 @@ jobs:
 
   webapi-containerapps:
     runs-on: ubuntu-latest
-    #if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, webapi-docker]
 
     steps:
@@ -211,6 +229,8 @@ jobs:
   #### Front end (angular) service ####     
   angular-docker:
     runs-on: ubuntu-latest
+    needs: deployment-context
+    if: needs.deployment-context.outputs.angular == 'true'
 
     steps:
       - name: Checkout 
@@ -240,7 +260,6 @@ jobs:
 
   angular-containerapps:
     runs-on: ubuntu-latest
-    #if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, angular-docker]
 
     steps:
