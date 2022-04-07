@@ -3,7 +3,8 @@
 name: Deploy Containers
 
 env:
-  DEPLOYMENT_MODE: ContainerApps #Aks / ContainerApps
+  CONTAINER_APPS: true 
+  AKS: false 
 
 on:
   push:
@@ -38,7 +39,7 @@ jobs:
   infrastructure-aks:
     runs-on: ubuntu-latest
     needs: deployment-context
-    if: needs.deployment-context.outputs.aks == 'true'
+    if: env.AKS == true
 
     steps:
       - name: Checkout 
@@ -72,7 +73,7 @@ jobs:
   infrastructure-containerapps:
     runs-on: ubuntu-latest
     needs: deployment-context
-    if: needs.deployment-context.outputs.containerapps == 'true'
+    if: env.CONTAINER_APPS == true
 
     steps:
       - name: Checkout 
