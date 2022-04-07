@@ -21,7 +21,8 @@ jobs:
   ### Infrastructure (bicep) ### - This could be moved out and run only on infra changes
   infrastructure-aks:
     runs-on: ubuntu-latest
-    if: env.DEPLOYMENT_MODE == 'Aks'
+    #if: ${{ env.TEST_SKIP == 'false' }}
+    if: ${{ env.DEPLOYMENT_MODE == 'Aks' }}
 
     steps:
       - name: Checkout 
@@ -42,7 +43,7 @@ jobs:
 
   infrastructure-containerapps:
     runs-on: ubuntu-latest
-    if: env.DEPLOYMENT_MODE == 'ContainerApps'
+    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
 
     steps:
       - name: Checkout 
@@ -95,6 +96,7 @@ jobs:
 
   luckynum-containerapps:
     runs-on: ubuntu-latest
+    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, luckynum-docker]
 
     steps:
@@ -114,6 +116,7 @@ jobs:
 
   luckynum-aks:
     runs-on: ubuntu-latest
+    if: ${{ env.DEPLOYMENT_MODE == 'Aks' }}
     needs: [infrastructure-aks, luckynum-docker]
 
     steps:
@@ -175,6 +178,7 @@ jobs:
 
   webapi-containerapps:
     runs-on: ubuntu-latest
+    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, webapi-docker]
 
     steps:
@@ -224,6 +228,7 @@ jobs:
 
   angular-containerapps:
     runs-on: ubuntu-latest
+    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, angular-docker]
 
     steps:
