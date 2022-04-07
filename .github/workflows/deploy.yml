@@ -18,11 +18,22 @@ on:
 
 jobs:
 
+  infrastructure-context:
+    runs-on: ubuntu-latest
+    outputs:
+      containerapps: ${{ steps.a.outputs.containerapps }}
+      aks: ${{ steps.b.outputs.aks }}
+    steps:
+      - name: Deploy to Container Apps?
+        run: echo "::set-output name=containerapps::true"
+      - name: Deploy to Container Aks?
+        run: echo "::set-output name=aks::false"
+
   ### Infrastructure (bicep) ### - This could be moved out and run only on infra changes
   infrastructure-aks:
     runs-on: ubuntu-latest
-    #if: ${{ env.TEST_SKIP == 'false' }}
-    if: ${{ env.DEPLOYMENT_MODE == 'Aks' }}
+    needs: infrastructure-context
+    if: needs.infrastructure-context.outputs.aks == 'true'
 
     steps:
       - name: Checkout 
@@ -43,7 +54,8 @@ jobs:
 
   infrastructure-containerapps:
     runs-on: ubuntu-latest
-    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
+    needs: infrastructure-context
+    if: needs.infrastructure-context.outputs.containerapps == 'true'
 
     steps:
       - name: Checkout 
@@ -96,7 +108,7 @@ jobs:
 
   luckynum-containerapps:
     runs-on: ubuntu-latest
-    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
+    # if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, luckynum-docker]
 
     steps:
@@ -116,7 +128,7 @@ jobs:
 
   luckynum-aks:
     runs-on: ubuntu-latest
-    if: ${{ env.DEPLOYMENT_MODE == 'Aks' }}
+    # if: ${{ env.DEPLOYMENT_MODE == 'Aks' }}
     needs: [infrastructure-aks, luckynum-docker]
 
     steps:
@@ -178,7 +190,7 @@ jobs:
 
   webapi-containerapps:
     runs-on: ubuntu-latest
-    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
+    #if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, webapi-docker]
 
     steps:
@@ -228,7 +240,7 @@ jobs:
 
   angular-containerapps:
     runs-on: ubuntu-latest
-    if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
+    #if: ${{ env.DEPLOYMENT_MODE == 'ContainerApps' }}
     needs: [infrastructure-containerapps, angular-docker]
 
     steps:
