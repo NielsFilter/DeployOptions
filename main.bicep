@@ -1,7 +1,9 @@
-param app_environment_name string = 'deploy-app-environment'
+
 param log_analytics_workspace_name string = 'deploy-workspace'
 
 // ### Use these params if aligning the container apps via bicep ###
+//param app_environment_name string = 'deploy-app-environment'
+
 // param luckynum_port int = 80
 // param luckynum_name string = 'deploy-options-luckynum'
 
