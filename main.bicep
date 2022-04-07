@@ -27,23 +27,23 @@ resource log_analytics_workspace 'Microsoft.OperationalInsights/workspaces@2021-
   }
 }
 
-resource app_environment 'Microsoft.Web/kubeenvironments@2021-02-01' = {
-  name: app_environment_name
-  location: 'northeurope'
-  kind: 'containerenvironment'
-  properties: {
-    type: 'managed'
-    appLogsConfiguration: {
-      destination: 'log-analytics'
-      logAnalyticsConfiguration: {
-        customerId: log_analytics_workspace.properties.customerId
-        sharedKey: log_analytics_workspace.listKeys().primarySharedKey
-      }
-    }
-  }
-}
-
 // ### Here are the container apps with bicep if preferred over yaml ###
+// resource app_environment 'Microsoft.Web/kubeenvironments@2021-02-01' = {
+//   name: app_environment_name
+//   location: 'northeurope'
+//   kind: 'containerenvironment'
+//   properties: {
+//     type: 'managed'
+//     appLogsConfiguration: {
+//       destination: 'log-analytics'
+//       logAnalyticsConfiguration: {
+//         customerId: log_analytics_workspace.properties.customerId
+//         sharedKey: log_analytics_workspace.listKeys().primarySharedKey
+//       }
+//     }
+//   }
+// }
+
 // resource luckynum_app 'Microsoft.Web/containerapps@2021-03-01' = {
 //   name: luckynum_name
 //   kind: 'containerapps'
