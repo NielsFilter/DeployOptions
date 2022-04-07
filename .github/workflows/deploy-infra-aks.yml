@@ -1,9 +1,5 @@
 name: Deploy AKS Infrastructure
 
-env:
-  CONTAINER_APPS: true
-  AKS: false 
-
 on:
   workflow_dispatch:
 
