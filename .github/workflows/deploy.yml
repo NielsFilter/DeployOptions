@@ -22,20 +22,19 @@ jobs:
   deployment-context:
     runs-on: ubuntu-latest
     outputs:
-      containerapps: ${{ steps.a.outputs.containerapps }}
-      aks: ${{ steps.b.outputs.aks }}
-      luckynum: ${{ steps.a.outputs.luckynum }}
-      webapi: ${{ steps.b.outputs.webapi }}
-      angular: ${{ steps.b.outputs.angular }}
+      containerapps: ${{ steps.set_outputs.outputs.containerapps }}
+      aks: ${{ steps.set_outputs.outputs.aks }}
+      luckynum: ${{ steps.set_outputs.outputs.luckynum }}
+      webapi: ${{ steps.set_outputs.outputs.webapi }}
+      angular: ${{ steps.set_outputs.outputs.angular }}
     steps:
+      - id: set_outputs
       - run: |
           echo "::set-output name=containerapps::${{ env.CONTAINER_APPS }}";
           echo "::set-output name=aks::${{ env.AKS }}";
           echo "::set-output name=luckynum::true";
           echo "::set-output name=webapi::true";
           echo "::set-output name=angular::true";
-          echo "env.AKS: ${{ env.AKS }}";
-          echo "CONTAINER_APPS: ${{ env.CONTAINER_APPS }}";
 
   ### Infrastructure (bicep) ### - This could be moved out and run only on infra changes
   infrastructure-aks:
