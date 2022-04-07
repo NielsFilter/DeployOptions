@@ -1,10 +1,11 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Deploy Containers
 
 env:
   CONTAINER_APPS: true
   AKS: false 
+  LUCKYNUM: true 
+  WEBAPI: true 
+  ANGULAR: true 
 
 on:
   push:
@@ -32,9 +33,9 @@ jobs:
         run: |
           echo "::set-output name=containerapps::${{ env.CONTAINER_APPS }}";
           echo "::set-output name=aks::${{ env.AKS }}";
-          echo "::set-output name=luckynum::true";
-          echo "::set-output name=webapi::true";
-          echo "::set-output name=angular::true";
+          echo "::set-output name=luckynum::${{ env.LUCKYNUM }}";
+          echo "::set-output name=webapi::${{ env.WEBAPI }}";
+          echo "::set-output name=angular::${{ env.ANGULAR }}";
 
   ### Infrastructure (bicep) ### - This could be moved out and run only on infra changes
   infrastructure-aks:
@@ -70,31 +71,6 @@ jobs:
           echo "containerapps2: ${{ github.needs.deployment-context.outputs.containerapps }}"
           echo "aks: ${{ github.needs.deployment-context.outputs.aks }}"
           echo "test: ${{  env.CONTAINER_APPS }}";
-
-
-  infrastructure-containerapps:
-    runs-on: ubuntu-latest
-    needs: deployment-context
-    if: needs.deployment-context.outputs.containerapps == 'true'
-
-    steps:
-      - name: Checkout 
-        uses: actions/checkout@v2
-  
-      - name: Az Login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-      
-      - name: Deploy infrastructure with bicep
-        uses: Azure/arm-deploy@v1
-        with:
-          subscriptionId: 490eb18c-41ab-4b43-bfe8-334a4d8c8a33
-          resourceGroupName: ContainerAppDeployment
-          template: ./main.bicep
-          deploymentMode: Incremental
-          failOnStdErr: false #sucks to have to do this, but in container app incorrectly fails validation (due to warning), causing the workflow to bomb out
-
 
   #### Lucky number service ####
   luckynum-docker:
