@@ -1,6 +1,5 @@
 param location string = 'eastus'
 param clusterName string = 'deploy-aks-cluster'
-
 //param nodeCount int = 1
 param vmSize string = 'standard_d2s_v3'
 
