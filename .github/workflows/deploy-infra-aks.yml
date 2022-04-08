@@ -21,7 +21,7 @@ jobs:
         uses: Azure/arm-deploy@v1
         with:
           subscriptionId: 490eb18c-41ab-4b43-bfe8-334a4d8c8a33
-          resourceGroupName: AksDeployment
+          resourceGroupName: AksTestDeployment
           template: ./main.bicep
           deploymentMode: Incremental
           failOnStdErr: false
