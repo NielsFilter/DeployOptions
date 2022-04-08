@@ -24,3 +24,4 @@ jobs:
           resourceGroupName: AksDeployment
           template: ./aks.bicep
           deploymentMode: Incremental
+          failOnStdErr: false
