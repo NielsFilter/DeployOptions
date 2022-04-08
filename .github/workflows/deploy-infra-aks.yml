@@ -20,8 +20,32 @@ jobs:
       - name: Deploy cluster with bicep
         uses: Azure/arm-deploy@v1
         with:
-          subscriptionId: 490eb18c-41ab-4b43-bfe8-334a4d8c8a33
+          # subscriptionId: 490eb18c-41ab-4b43-bfe8-334a4d8c8a33
           resourceGroupName: AksDeployment
           template: ./aks.bicep
           deploymentMode: Incremental
           failOnStdErr: false
+        # uses: Azure/arm-deploy@v1.0.7
+        # with:
+        #   # Provide the scope of the deployment. Valid values are: 'resourcegroup', 'managementgroup', 'subscription'
+        #   scope: 
+        #   # Override the Subscription Id set by Azure Login.
+        #   subscriptionId: # optional
+        #   # Specify the Id for the Management Group, only required for Management Group Deployments.
+        #   managementGroupId: # optional
+        #   # Provide the target region, only required for management Group or Subscription deployments.
+        #   region: # optional
+        #   # Provide the name of a resource group, only required for resource Group deployments.
+        #   resourceGroupName: # optional
+        #   # Specify the path or URL to the Azure Resource Manager template.
+        #   template: 
+        #   # Incremental (only add resources to resource group) or Complete (remove extra resources from resource group) or Validate (only validates the template).
+        #   deploymentMode: # optional
+        #   # Specifies the name of the resource group deployment to create.
+        #   deploymentName: # optional
+        #   # Supply deployment parameter values.
+        #   parameters: # optional
+        #   # Specify whether to fail the action if some data is written to stderr stream of az cli. Valid values are: true, false
+        #   failOnStdErr: # optional, default is true
+        #   # Specify any additional arguments for the deployment.
+        #   additionalArguments: # optional
