@@ -22,6 +22,6 @@ jobs:
         with:
           subscriptionId: 490eb18c-41ab-4b43-bfe8-334a4d8c8a33
           resourceGroupName: ContainerAppDeployment
-          template: ./aks.bicep
+          template: ./main.bicep
           deploymentMode: Incremental
           failOnStdErr: false #sucks to have to do this, but in container app incorrectly fails validation (due to warning), causing the workflow to bomb out
