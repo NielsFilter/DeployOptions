@@ -123,6 +123,11 @@ jobs:
         with:
           creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+      - name: Deploy to Kubernetes cluster
+        uses: Azure/k8s-deploy@v3.1
+        with:
+          manifests: ./LuckyNumberGenerator/aks-deployment.yml
+          images: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:latest
 
   ### Web Api service ###
   webapi-docker:
