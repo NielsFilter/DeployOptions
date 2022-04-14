@@ -1,8 +1,8 @@
 name: Deploy Containers
 
 env:
-  CONTAINER_APPS: true
-  AKS: false 
+  CONTAINER_APPS: false
+  AKS: true 
   LUCKYNUM: true 
   WEBAPI: true 
   ANGULAR: true 
@@ -127,7 +127,6 @@ jobs:
         uses: Azure/k8s-deploy@v3.1
         with:
           manifests: ./LuckyNumberGenerator/aks-deployment.yml
-          images: ${{ secrets.DOCKER_HUB_USERNAME }}/deploy-options-luckynum:latest
 
   ### Web Api service ###
   webapi-docker:
