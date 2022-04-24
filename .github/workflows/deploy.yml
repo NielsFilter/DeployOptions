@@ -179,7 +179,10 @@ jobs:
     needs: [deployment-context,webapi-docker]
     if: needs.deployment-context.outputs.aks == 'true'
 
-    steps:                
+    steps:           
+      - name: Checkout 
+        uses: actions/checkout@v2
+                
       - name: Az Login
         uses: azure/login@v1
         with:
@@ -256,7 +259,10 @@ jobs:
     needs: [deployment-context,angular-docker]
     if: needs.deployment-context.outputs.aks == 'true'
 
-    steps:                
+    steps:         
+      - name: Checkout 
+        uses: actions/checkout@v2
+                
       - name: Az Login
         uses: azure/login@v1
         with:
