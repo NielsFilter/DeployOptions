@@ -4,8 +4,8 @@ env:
   CONTAINER_APPS: false
   AKS: true 
   LUCKYNUM: true 
-  WEBAPI: false 
-  ANGULAR: false 
+  WEBAPI: true 
+  ANGULAR: true 
   CLUSTER_NAME: deploy-aks-cluster
   CLUSTER_RESOURCE_GROUP: AksDeployment
 
