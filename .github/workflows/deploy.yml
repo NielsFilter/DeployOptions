@@ -154,7 +154,7 @@ jobs:
   webapi-containerapps:
     runs-on: ubuntu-latest
     needs: [deployment-context,webapi-docker]
-    if: needs.deployment-context.outputs.aks == 'true'
+    if: needs.deployment-context.outputs.containerapps == 'true'
 
     steps:
       - name: Checkout 
@@ -231,7 +231,7 @@ jobs:
   angular-containerapps:
     runs-on: ubuntu-latest
     needs: [deployment-context,angular-docker]
-    if: needs.deployment-context.outputs.aks == 'true'
+    if: needs.deployment-context.outputs.containerapps == 'true'
 
     steps:
       - name: Checkout 
