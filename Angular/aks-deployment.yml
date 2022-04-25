@@ -16,9 +16,7 @@ spec:
         image: docker.io/filterniels/deploy-options-angular:latest
         env:
         - name: API_URL
-          value: "Hello from the environment"
-        - name: DEMO_FAREWELL
-          value: "Such a sweet sorrow"
+          value: http://20.81.126.186/ #TODO: make dynamic
         resources:
           limits:
             memory: "128Mi"

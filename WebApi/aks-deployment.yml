@@ -14,6 +14,9 @@ spec:
       containers:
       - name: webapi-app
         image: docker.io/filterniels/deploy-options-webapi:latest
+        env:
+        - name: LuckyNumberService__ApiUrl
+          value: http://10.0.107.79/
         resources:
           limits:
             memory: "128Mi"
