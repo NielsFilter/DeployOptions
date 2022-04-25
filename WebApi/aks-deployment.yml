@@ -16,7 +16,7 @@ spec:
         image: docker.io/filterniels/deploy-options-webapi:latest
         env:
         - name: LuckyNumberService__ApiUrl
-          value: http://10.0.107.79/
+          value: example.default #http://10.0.107.79/ #todo
         resources:
           limits:
             memory: "128Mi"
