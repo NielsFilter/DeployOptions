@@ -14,6 +14,11 @@ spec:
       containers:
       - name: front-end-app
         image: docker.io/filterniels/deploy-options-angular:latest
+        env:
+        - name: API_URL
+          value: "Hello from the environment"
+        - name: DEMO_FAREWELL
+          value: "Such a sweet sorrow"
         resources:
           limits:
             memory: "128Mi"
