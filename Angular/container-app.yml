@@ -23,7 +23,7 @@ properties:
           name: deploy-options-angular
           env:
           - name: API_URL
-            value: https://deploy-options-webapi.calmwave-828f0207.northeurope.azurecontainerapps.io/
+            value: http://20.81.126.186/ #TODO: make dynamic
           resources:
               cpu: 0.5
               memory: 1Gi
