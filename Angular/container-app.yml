@@ -24,6 +24,8 @@ properties:
           env:
           - name: API_URL
             value: https://deploy-options-webapi.calmwave-828f0207.northeurope.azurecontainerapps.io/
+          # - name: APPLICATIONINSIGHTS_INSTRUMENTATION_KEY
+          #   value: <todo>
           resources:
               cpu: 0.5
               memory: 1Gi

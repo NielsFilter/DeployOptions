@@ -17,6 +17,8 @@ spec:
         env:
         - name: API_URL
           value: http://20.81.126.186/ #TODO: make dynamic
+        - name: APPLICATIONINSIGHTS_INSTRUMENTATION_KEY
+          value: 1e881e38-f95a-40ac-b973-949bff490c23
         resources:
           limits:
             memory: "128Mi"

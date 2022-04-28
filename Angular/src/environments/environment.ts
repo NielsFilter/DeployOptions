@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: "https://localhost:44333/"
+  apiUrl: "https://localhost:44333/",
+  instrumentationKey: "dev-instrumentation-key"
 };
 
 /*
