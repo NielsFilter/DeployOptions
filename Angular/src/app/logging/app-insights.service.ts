@@ -6,3 +6,7 @@ const appInsights = new ApplicationInsights({ config: {
 } });
 appInsights.loadAppInsights();
 appInsights.trackPageView(); // Manually call trackPageView to establish the current user/session/pageview
+
+//todo: remove
+console.log("logging: ");
+console.log(environment.instrumentationKey);
