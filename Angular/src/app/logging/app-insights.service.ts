@@ -4,15 +4,10 @@ import { environment } from './../../environments/environment';
 
 @Injectable()
 export class ApplicationInsightsService {
-    appInsights: ApplicationInsights | undefined;
+    appInsights: ApplicationInsights;
 
     constructor() {
         const appInsightsKey = environment.instrumentationKey;
-        if (!appInsightsKey) {
-            // add custom behavior to handle this scenario
-            console.error('Application Insights key not found.');
-            return;
-        }
 
         this.appInsights = new ApplicationInsights({
             config: {
@@ -21,7 +16,13 @@ export class ApplicationInsightsService {
             },
         });
 
-        this.appInsights.loadAppInsights();
+        if (!appInsightsKey) {
+            // add custom behavior to handle this scenario
+            console.error('Application Insights key not found.');
+        }
+        else {
+            this.appInsights.loadAppInsights();
+        }
     }
 
     // helper methods to track a variety of events and metric
@@ -48,8 +49,3 @@ export class ApplicationInsightsService {
         this.appInsights.trackTrace({ message: message }, properties);
     }
 }
-view rawApplicationInsightsService.js hosted with ❤ by GitHub
-
-//todo: remove
-console.log("logging: ");
-console.log(environment.instrumentationKey);
