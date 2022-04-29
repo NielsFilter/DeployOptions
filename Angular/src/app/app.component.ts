@@ -12,6 +12,8 @@ export class AppComponent {
   title = 'app';
 
   constructor(private router: Router) {
+      console.log('app insights loading'); //todo: testing
+      console.log(environment.instrumentationKey);
       var angularPlugin = new AngularPlugin();
       const appInsights = new ApplicationInsights({ config: {
       instrumentationKey: environment.instrumentationKey,
