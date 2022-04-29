@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
@@ -9,7 +9,7 @@ import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
 import { WeatherForecastComponent } from './weather-forecast/weather-forecast.component';
 import { LuckyNumberComponent } from './lucky-number/lucky-number.component';
-import { ApplicationInsightsService } from './logging/app-insights.service'
+import { ApplicationinsightsAngularpluginErrorService } from '@microsoft/applicationinsights-angularplugin-js';
 
 @NgModule({
   declarations: [
@@ -29,9 +29,10 @@ import { ApplicationInsightsService } from './logging/app-insights.service'
       { path: 'weather-forecast', component: WeatherForecastComponent },
     ])
   ],
-  providers: [
-    ApplicationInsightsService
-  ],
+  providers: [{
+    provide: ErrorHandler,
+    useClass: ApplicationinsightsAngularpluginErrorService
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
