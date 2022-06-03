@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: API_URL
-          value: http://20.124.161.128/ #TODO: make dynamic
+          value: webapi-app.svc.cluster.local  #http://20.124.161.128/ 
         - name: APPLICATIONINSIGHTS_INSTRUMENTATION_KEY
           value: 1e881e38-f95a-40ac-b973-949bff490c23
         resources:
