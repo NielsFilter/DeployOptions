@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: API_URL
-          value: http://20.228.166.43/
+          value: http://webapi-app.deploy-aks-cluster-d1ca2dbb.hcp.eastus.azmk8s.io/
         - name: APPLICATIONINSIGHTS_INSTRUMENTATION_KEY
           value: 1e881e38-f95a-40ac-b973-949bff490c23
         resources:
