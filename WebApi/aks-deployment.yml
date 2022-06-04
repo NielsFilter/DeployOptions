@@ -31,6 +31,7 @@ kind: Service
 metadata:
   name: webapi-app
 spec:
+  loadBalancerIP: 20.228.166.43
   type: LoadBalancer
   selector:
     app: webapi-app
