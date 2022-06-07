@@ -14,6 +14,7 @@ spec:
       containers:
       - name: lucky-number-app
         image: docker.io/filterniels/deploy-options-luckynum:latest
+        imagePullPolicy: Always
         env:
         - name: APPLICATIONINSIGHTS_CONNECTION_STRING
           value: InstrumentationKey=1e881e38-f95a-40ac-b973-949bff490c23;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/
