@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
 
 namespace LuckyNumberGenerator.Controllers
 {
@@ -6,15 +7,10 @@ namespace LuckyNumberGenerator.Controllers
     [Route("[controller]")]
     public class VersionController : ControllerBase
     {
-        public VersionController()
-        {
-            _logger = logger;
-        }
-
         [HttpGet]
         public string Get()
         {
-            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            return Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "v?";
         }
     }
 }

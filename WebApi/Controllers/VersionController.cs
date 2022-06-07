@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Reflection;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebApi.Controllers
 {
@@ -6,15 +7,10 @@ namespace WebApi.Controllers
     [Route("[controller]")]
     public class VersionController : ControllerBase
     {
-        public VersionController()
-        {
-            _logger = logger;
-        }
-
         [HttpGet]
         public string Get()
         {
-            return Assembly.GetExecutingAssembly().GetName().Version.ToString();
+            return Assembly.GetExecutingAssembly().GetName().Version?.ToString() ?? "v?";
         }
     }
 }
