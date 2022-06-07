@@ -17,7 +17,7 @@ spec:
         imagePullPolicy: Always
         env:
         - name: LuckyNumberService__ApiUrl
-          value: http://lucky-number-app.eastus.cloudapp.azure.com/  #http://lucky-number-app.svc.cluster.local/ # http://10.0.46.96/ 
+          value: http://lucky-number-app.default.svc.cluster.local/  #http://lucky-number-app.svc.cluster.local/ # http://10.0.46.96/ 
         - name: APPLICATIONINSIGHTS_CONNECTION_STRING
           value: InstrumentationKey=1e881e38-f95a-40ac-b973-949bff490c23;IngestionEndpoint=https://westus2-2.in.applicationinsights.azure.com/;LiveEndpoint=https://westus2.livediagnostics.monitor.azure.com/
         resources:
