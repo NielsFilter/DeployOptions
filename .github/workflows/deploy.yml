@@ -110,6 +110,7 @@ jobs:
 
       - uses: Azure/k8s-set-context@v2
         with:
+          method: service-principal
           cluster-name: ${{ env.CLUSTER_NAME }}
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     
@@ -189,6 +190,7 @@ jobs:
 
       - uses: Azure/k8s-set-context@v2
         with:
+          method: service-principal
           cluster-name: ${{ env.CLUSTER_NAME }}
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     
@@ -268,6 +270,7 @@ jobs:
 
       - uses: Azure/k8s-set-context@v2
         with:
+          method: service-principal
           cluster-name: ${{ env.CLUSTER_NAME }}
           resource-group: ${{ env.CLUSTER_RESOURCE_GROUP }}
     
